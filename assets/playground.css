@@ -1,0 +1,232 @@
+/* ==========================================================================
+   Playground: dezelfde kleuren en letters als luctiemessen.github.io.
+   Gebruik in een experiment: <link rel="stylesheet" href="../assets/playground.css">
+   en zet <script src="../assets/theme.js"></script> in de head, dan volgt de
+   pagina ook de Light / Dark-keuze uit het menu van de blog.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Newsreader Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(fonts/newsreader-latin-opsz-normal.woff2) format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Newsreader Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(fonts/newsreader-latin-opsz-italic.woff2) format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Cabin Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url(fonts/cabin-latin-wght-normal.woff2) format('woff2-variations');
+}
+
+:root {
+  color-scheme: light dark;
+  --font-serif: 'Newsreader Variable', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-sans: 'Cabin Variable', 'Gill Sans', 'Gill Sans MT', Calibri, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+
+  --paper: #f7f5f1;
+  --paper-raised: #fdfcfa;
+  --ink: #1d1c1a;
+  --ink-2: #4a4741;
+  --ink-3: #736e65;
+  --rule: #e3dfd6;
+  --rule-strong: #cbc5b9;
+  --accent: #2f6f4f;
+  --accent-tint: #e1ebe3;
+  --code-bg: #eeebe4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #1c1d1b;
+    --paper-raised: #232421;
+    --ink: #e9e6e0;
+    --ink-2: #bfbab1;
+    --ink-3: #969186;
+    --rule: #33342f;
+    --rule-strong: #4a4b45;
+    --accent: #8bc6a1;
+    --accent-tint: #26352b;
+    --code-bg: #272824;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #1c1d1b;
+  --paper-raised: #232421;
+  --ink: #e9e6e0;
+  --ink-2: #bfbab1;
+  --ink-3: #969186;
+  --rule: #33342f;
+  --rule-strong: #4a4b45;
+  --accent: #8bc6a1;
+  --accent-tint: #26352b;
+  --code-bg: #272824;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 clamp(1.125rem, 1rem + 0.4vw, 1.25rem) / 1.6 var(--font-serif);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.15s ease;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent-tint);
+  color: var(--ink);
+}
+
+code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--code-bg);
+  font: 0.85em/1 var(--font-mono);
+}
+
+/* Een pagina: een tekstkolom van ± 70 tekens. */
+.page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 5rem) 1.25rem 4rem;
+}
+
+/* Terug naar de blog of de playground, klein en grijs bovenaan. */
+.crumb {
+  margin: 0 0 2.5rem;
+  font: 400 0.9375rem/1.4 var(--font-sans);
+  color: var(--ink-3);
+}
+
+.crumb a {
+  color: inherit;
+}
+
+.crumb a:hover {
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.375rem, 1.4rem + 3.6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
+h2 {
+  margin: 2.5em 0 0.6em;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0 0 1.05em;
+  text-wrap: pretty;
+}
+
+/* Intro-alinea: groter, met een groen streepje eronder. */
+.lead {
+  margin-bottom: 2.5rem;
+  font-size: 1.28em;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.lead::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-top: 0.9em;
+  background: var(--accent);
+}
+
+/* De lijst met experimenten op de voorpagina. */
+.experiments {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.experiments li {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.experiments a {
+  font-size: 1.25rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.experiments a:hover {
+  color: var(--accent);
+}
+
+.experiments span {
+  display: block;
+  margin-top: 0.2rem;
+  font: 400 0.9375rem/1.45 var(--font-sans);
+  color: var(--ink-3);
+}
+
+/* Zolang de lijst leeg is, staat er een kort zinnetje. */
+.empty {
+  display: none;
+  font: 400 0.9375rem/1.45 var(--font-sans);
+  color: var(--ink-3);
+}
+
+.experiments:not(:has(li)) {
+  border-top: 0;
+}
+
+.experiments:not(:has(li)) + .empty {
+  display: block;
+}
